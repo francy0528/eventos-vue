@@ -1,6 +1,6 @@
 <template>
     <header>
-        <h1>Página de Gestión de Eventos</h1>
+        <h1>{{titulo}}</h1>
     </header>
     <main>
         <div>
@@ -43,7 +43,13 @@
                 </thead>
                 
                 <TBody id="datos_eventos">
-                    
+                    <tr v-for="unEvento in listaEventos" :key="unEvento">
+                        <td>{{unEvento.cliente}}</td>
+                        <td>{{unEvento.salon.nombre}}</td>
+                        <td>{{unEvento.meseros}}</td>
+                        <td>{{unEvento.platos}}</td>
+                        <td>{{unEvento.total}}</td>                    
+                    </tr>
                 </TBody>
             </table>;
         </div>
@@ -52,12 +58,43 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+
 
 export default {
+  data(){
+      return{
+          titulo:"Gestion de Eventos",
+          listaEventos:[
+            {
+                cliente :"jose",
+                documento : "123456",
+                meseros : 2,
+                platos : 150,
+                salon:  {"nombre":"Normal",
+                        "precio":1000000,
+                        "extra_mesero":150000,
+                        "cantidad_meseros": 1,
+                        "plato":50000},
+                total: 3200000
+                },
+            {
+                cliente :"laura",
+                documento : "456789",
+                meseros : 3,
+                platos : 100,
+                salon: {"nombre":"Grande",
+                        "precio":2000000,
+                        "extra_mesero":100000,
+                        "cantidad_meseros": 4,
+                        "plato":40000},
+                total: 2200000
+            }
+        ],
+      };
+  },
   name: 'Home',
   components: {
-    HelloWorld
+
   }
 }
 </script>
